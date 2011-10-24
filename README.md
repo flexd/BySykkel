@@ -1,3 +1,3 @@
 Oblig schmoblig? :-D
 
-Tommy er litt treg! :D
+Vi er veldig trege!
