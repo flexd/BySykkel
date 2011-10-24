@@ -33,6 +33,15 @@ public class Stativ
      }
      return null;
    }
+   public Sykkel finnSykkel(int sykkelID) {
+     for (int i = 0; i < stativ.length; i++) {
+       Sykkel sykkel = stativ[i];
+       if (sykkel != null && sykkel.getID() == sykkelID) {
+         return sykkel;
+       }
+     }
+     return null;
+   }
     public int finnLedigPlass() {
      for (int i = 0; i < stativ.length; i++) {
        Sykkel sykkel = stativ[i];
@@ -60,7 +69,7 @@ public class Stativ
        Sykkel sykkel = finnLedigSykkel();
        if (s.leiSykkel(sykkel)) {
          stativ[sykkel.getStativID()] = null; // Fjerne sykkelen fra stativet.
-         return "Ta sykkel fra plass " + (1+sykkel.getStativID()) + "\n";
+         return "Ta sykkel med ID: " + (1+sykkel.getID()) + " fra plass " + (1+sykkel.getStativID()) + ".\n Dette ID-nummeret må du oppgi når du skal levere sykkelen\n";
        }
        else { 
          // NO SOUP FOR YOU!

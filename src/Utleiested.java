@@ -40,7 +40,7 @@ public class Utleiested extends JFrame implements ActionListener
      
      ut.addActionListener(this);
      inn.addActionListener(this);
-     display = new JTextArea(200, 200);
+     display = new JTextArea(15, 10);
      
      Container c = getContentPane();
     
@@ -54,7 +54,7 @@ public class Utleiested extends JFrame implements ActionListener
      c.add(inn);
      c.add(display);
 
-     setSize(200, 200);
+     setSize(200, 100);
      setVisible(true);
      setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
    }
@@ -70,8 +70,8 @@ public class Utleiested extends JFrame implements ActionListener
        sykkelen. >
       */
      
-     if (personIDFelt.getText() != "" && sykkelIDFelt.getText() != "") {
-       Person person = personer.finnPerson(Integer.parseInt(personIDFelt.getText()));
+     if (personIDFelt.getText() != null) {
+       Person person = personer.finnPerson((Integer.parseInt(personIDFelt.getText())-1));
        if (person != null) {
          // Success, vi har en person.
          String resultat = stativet.leiUt(person);
@@ -95,6 +95,25 @@ public class Utleiested extends JFrame implements ActionListener
        sykkelens id-nummer er ukjent, skal det gis beskjed om det. >
       * 
       */
+     if (sykkelIDFelt.getText() != null) {
+       Sykkel sykkel = stativet.finnSykkel((Integer.parseInt(sykkelIDFelt.getText())-1));
+       if (sykkel != null) {
+         // Success, vi har en person.
+         Person person = personer.finnPerson(sykkel.getLeidAvID());
+         String resultat = "";
+         if (person != null) {
+           resultat = stativet.leverInn(person);
+         }
+         else {
+           resultat = "Det finnes ingen person med dette ID eller så har ingen leid denne sykkelen.\n";
+         }
+         display.append(resultat);
+       }
+       else {
+         // Sorry personen finnes ikke i registeret.
+         display.append("Du må faktisk skrive inn et id din kølle!\n");
+       }
+     }
    }
 
   @Override
@@ -105,7 +124,7 @@ public class Utleiested extends JFrame implements ActionListener
        "Leie", og at leverInn() kalles når det klikkes på  knappen "Levere" >
       * 
       */
-     if (e.getSource() == ut ) {
+     if (e.getSource() == ut) {
        leiUt();
      }
      else if (e.getSource() == inn) {

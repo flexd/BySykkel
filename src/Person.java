@@ -27,10 +27,8 @@ public class Person
    public boolean godkjent()
    {
 	   if (sykkel == null && merknad == null) {
-		   JOptionPane.showMessageDialog(null, "godkjent() ble true");
 		   return true;
 	   }
-	   JOptionPane.showMessageDialog(null, "godkjent() ble false");
 	   return false;
    }
 
@@ -44,10 +42,9 @@ public class Person
 	   if(godkjent() == true) {
 		   sykkel = s;
 		   startTid = new Date();
-		   JOptionPane.showMessageDialog(null, "leiSykkel() ble true");
+                   s.setLeidAvID(id);
 		   return true;
 	   }
-	   JOptionPane.showMessageDialog(null, "leiSykkel() ble false");  
 	   return false;
    }
 
@@ -71,6 +68,7 @@ public class Person
 			   setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - Sykkel.getMAXTID()) + " timer for sent");
 		   }
 	   }
+           sykkel.setLeidAvID(-1);
 	   sykkel = null;
    }
 
