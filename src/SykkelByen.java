@@ -1,4 +1,4 @@
-public class SykkelByen
+public final class SykkelByen
 {
    private Utleiested[] steder;
    private PersonRegister register;

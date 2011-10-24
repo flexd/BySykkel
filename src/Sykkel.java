@@ -8,7 +8,7 @@ public class Sykkel {
     id = nextID++;
   }
 
-  public int getId() {
+  public int getID() {
     return id;
   }
   
