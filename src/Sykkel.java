@@ -8,7 +8,12 @@ public class Sykkel {
     id = nextID++;
   }
 
+  public static int getMAXTID() {
+    return MAXTID;
+  }
+  
   public int getID() {
+    System.out.println("Id er : " + id);
     return id;
   }
   

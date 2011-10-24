@@ -60,15 +60,15 @@ public class Stativ
        Sykkel sykkel = finnLedigSykkel();
        if (s.leiSykkel(sykkel)) {
          stativ[sykkel.getID()] = null; // Fjerne sykkelen fra stativet.
-         return "Ta sykkel fra plass " + (1+sykkel.getID());
+         return "Ta sykkel fra plass " + (1+sykkel.getID()) + "\n";
        }
        else { 
          // NO SOUP FOR YOU!
-         return "Du får ikke leie sykkel fordi du enten har leid en sykkel fra før eller har noen negative merknader!";
+         return "Du får ikke leie sykkel fordi du enten har leid en sykkel fra før eller har noen negative merknader!\n";
        }
      }
      else {
-      return "Det er desverre ingen ledige sykler på dette stativet, men det ser du vel dummen! :-D";
+      return "Det er desverre ingen ledige sykler på dette stativet, men det ser du vel dummen! :-D\n";
      }
    }
 

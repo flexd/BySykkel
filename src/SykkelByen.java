@@ -24,5 +24,6 @@ public final class SykkelByen
      PersonRegister register = new PersonRegister(10);
 
      new SykkelByen(10, register);
+     
    }
 }

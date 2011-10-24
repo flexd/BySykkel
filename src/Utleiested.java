@@ -1,16 +1,14 @@
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class Utleiested extends JFrame implements ActionListener
 {
    private Stativ stativet;
-   private JTextField  personIdFelt, sykkelIdFelt;
+   private JTextField  personIDFelt, sykkelIDFelt;
    private JTextArea display;
+   private JLabel personIDlabel, sykkelIDlabel;
    private JButton ut, inn ;
    private PersonRegister personer;
 
@@ -19,6 +17,7 @@ public class Utleiested extends JFrame implements ActionListener
      super("BYSYKKEL " + navn);
      personer = p;
      stativet = new Stativ(antall);
+     
      /*
      < Oppretter skjermkomponentene >
 
@@ -30,6 +29,30 @@ public class Utleiested extends JFrame implements ActionListener
      < Legger skjermkomponentene ut på vinduet >
       * 
       */
+     personIDlabel = new JLabel("Person ID");
+     personIDFelt = new JTextField(2);
+     ut = new JButton("Leie");
+     sykkelIDlabel = new JLabel(" Sykkel ID");
+     sykkelIDFelt = new JTextField(2);
+     inn = new JButton("Levere");
+     
+     // Lytte etter hendelser.
+     
+     ut.addActionListener(this);
+     inn.addActionListener(this);
+     display = new JTextArea(200, 200);
+     
+     Container c = getContentPane();
+    
+     setLayout(new FlowLayout());
+     
+     c.add(personIDlabel);
+     c.add(personIDFelt);
+     c.add(ut);
+     c.add(sykkelIDlabel);
+     c.add(sykkelIDFelt);
+     c.add(inn);
+     c.add(display);
 
      setSize(200, 200);
      setVisible(true);
@@ -43,9 +66,23 @@ public class Utleiested extends JFrame implements ActionListener
        skrevet inn i tekstfeltet for dette. Hvis personen er registrert og er
        godkjent for utleie, skal det skrives ut i tekstområdet hvilken sykkel
        vedkommende skal ta. I motsatt fall skal det skrives ut en passende
-       feilmelding. Denne skal inneholde årsaken til at peronen ikke fikk leie
+       feilmelding. Denne skal inneholde årsaken til at personen ikke fikk leie
        sykkelen. >
       */
+     
+     if (personIDFelt.getText() != "" && sykkelIDFelt.getText() != "") {
+       Person person = personer.finnPerson(Integer.parseInt(personIDFelt.getText()));
+       if (person != null) {
+         // Success, vi har en person.
+         String resultat = stativet.leiUt(person);
+         display.append(resultat);
+       }
+       else {
+         // Sorry personen finnes ikke i registeret.
+         display.append("Personen finnes ikke i register\n");
+       }
+     }
+     
    }
 
    public void leverInn()
@@ -68,6 +105,12 @@ public class Utleiested extends JFrame implements ActionListener
        "Leie", og at leverInn() kalles når det klikkes på  knappen "Levere" >
       * 
       */
+     if (e.getSource() == ut ) {
+       leiUt();
+     }
+     else if (e.getSource() == inn) {
+       leverInn();
+     }
    }
 
 }// end of class Utleiested
