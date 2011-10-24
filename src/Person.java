@@ -76,6 +76,7 @@ public class Person
 
   
 
+  @Override
    public String toString() {
 	   String utskrift = navn + " ID nummer: " + id + "\n";
 	   

@@ -1,7 +1,7 @@
 public class Stativ
 {
    private Sykkel[] stativ;
-   private int antall = 0;
+   private int nextStativID = 0;
    private int maxAntall = 0;
    public Stativ(int antallSykler)
    {
@@ -16,13 +16,13 @@ public class Stativ
      < Her skal du opprette konkrete Sykkel-objekter og sette dem inn
        i arrayen. Et passende antall vil være halvparten av hva det er plass til. >
       */
-     for (int i = 0; i < maxAntall/2; i++) {
-       stativ[antall++] = new Sykkel();
+     for (int i = 0; i < (maxAntall/2); i++) {
+       stativ[nextStativID] = new Sykkel(nextStativID++); // lager ny sykkel m/stativID for dette stativet.
      }
    }
 
-   public int getAntall() {
-    return antall;
+   public int getNextStativID() {
+    return nextStativID;
    }
    public Sykkel finnLedigSykkel() {
      for (int i = 0; i < stativ.length; i++) {
@@ -56,11 +56,11 @@ public class Stativ
        "Ta sykkel på plass 1". Husk at plassene går fra 1 og oppover. Hvis leie
        av sykkel ikke lar seg gjøre skal metoden returnere en tekst med
        informasjon om hva det skyldes. >*/
-     if (getAntall() > 0) {
+     if (stativ.length > 0) {
        Sykkel sykkel = finnLedigSykkel();
        if (s.leiSykkel(sykkel)) {
-         stativ[sykkel.getID()] = null; // Fjerne sykkelen fra stativet.
-         return "Ta sykkel fra plass " + (1+sykkel.getID()) + "\n";
+         stativ[sykkel.getStativID()] = null; // Fjerne sykkelen fra stativet.
+         return "Ta sykkel fra plass " + (1+sykkel.getStativID()) + "\n";
        }
        else { 
          // NO SOUP FOR YOU!
@@ -87,7 +87,7 @@ public class Stativ
       if (ledigPlass != -1) {
         stativ[ledigPlass] = s.getSykkel();
         s.leverInn();
-        return "Sett sykkelen på plass " + ledigPlass;
+        return "Sett sykkelen på plass " + (1+ledigPlass);
       }
       else {
         return "Stativet er fullt som du sikkert ser, returner sykkelen et annet sted";
