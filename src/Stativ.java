@@ -1,9 +1,11 @@
 public class Stativ
 {
    private Sykkel[] stativ;
-
+   private int antall = 0;
+   private int maxAntall = 0;
    public Stativ(int antallSykler)
    {
+     maxAntall = antallSykler;
      stativ = new Sykkel[antallSykler];
      fyllStativet();
    }
@@ -14,8 +16,15 @@ public class Stativ
      < Her skal du opprette konkrete Sykkel-objekter og sette dem inn
        i arrayen. Et passende antall vil være halvparten av hva det er plass til. >
       */
+     for (int i = 0; i < maxAntall/2; i++) {
+       stativ[antall++] = new Sykkel();
+     }
    }
 
+   public int getAntall() {
+    return antall;
+   }
+   
    public String leiUt(Person s)
    {
      /*
