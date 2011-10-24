@@ -4,7 +4,7 @@ import java.text.DateFormat;
 public class Person
 {
 	String navn;
-	int idNr;
+	int id;
 	Sykkel sykkel;
 	String merknad;
 	int StartTid;
@@ -12,11 +12,11 @@ public class Person
 	
 	public Person(String navn) {
 		this.navn = navn;
-		idNr = nesteNr++;	
+		id = nesteNr++;	
 	}
 
-   public int getIdNr() {
-	   return idNr;
+   public int getID() {
+	   return id;
    }
 
    public Sykkel getSykkel() {
@@ -33,12 +33,9 @@ public class Person
    }
 
    public void setMerknad(Date t, String m) {
-     /*
-     < Metoden skal ut fra parametrene t og m lagre en tekst i datafeltet for
-       merknader. I teksten skal tidspunktet formateres  slik det er beskrevet
-       i oppgavens innledning. >
-      * 
-      */
+	   DateFormat df = DateFormat.getInstance();
+	   
+	   merknad+= df.format(t) + " " + m + "\n";
    }
 
    public boolean leiSykkel(Sykkel s) {
