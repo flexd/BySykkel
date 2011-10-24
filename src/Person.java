@@ -3,28 +3,36 @@ import java.text.DateFormat;
 
 public class Person
 {
-  /*
-   < datafelt >
+	String navn;
+	int idNr;
+	Sykkel sykkel;
+	String merknad;
+	int StartTid;
+	int nesteNr;
+	
+	public Person(String navn) {
+		this.navn = navn;
+		idNr = nesteNr++;	
+	}
 
-   < konstruktør >
+   public int getIdNr() {
+	   return idNr;
+   }
 
-   < get-metoder for sykkel og idNr >
-   * 
-   */
-
+   public Sykkel getSykkel() {
+	   return sykkel;
+   }
 
    public boolean godkjent()
    {
-     /*
-     < Metoden skal returnere true hvis personen ikke allerede leier
-       en sykkel og ikke har noen merknader. Ellers false. >
-      * 
-      */
-     return false;
+	   if (sykkel == null && merknad == null) {
+		   return true;
+	   }
+
+	   return false;
    }
 
-   public void setMerknad(Date t, String m)
-   {
+   public void setMerknad(Date t, String m) {
      /*
      < Metoden skal ut fra parametrene t og m lagre en tekst i datafeltet for
        merknader. I teksten skal tidspunktet formateres  slik det er beskrevet
@@ -33,8 +41,7 @@ public class Person
       */
    }
 
-   public boolean leiSykkel(Sykkel s)
-   {
+   public boolean leiSykkel(Sykkel s) {
      /*
      < Hvis personen er godkjent, jfr. metoden godkjent(), skal metoden
        registrere at personen leier sykkelen s. Starttidspunktet for leietiden
@@ -47,8 +54,7 @@ public class Person
      return false;
    }
 
-   public int leietid(Date sluttTid)
-   {
+   public int leietid(Date sluttTid) {
      /*
      < Metoden skal returnere antall påbegynte timer fra starttidspunktet for
        leien til sluttidspunktet angitt av parameteren sluttTid. >
@@ -57,8 +63,7 @@ public class Person
      return 0;
    }
 
-   public void leverInn()
-   {
+   public void leverInn() {
      /*
      < Metoden skal registrere innleveringstidpunktet (som vil  være det samme
        som tidspunktet for når denne metoden blir kalt). Videre skal leietiden
@@ -70,8 +75,7 @@ public class Person
       */
    }
 
-   public String toString()
-   {
+   public String toString() {
      /*
      < Metoden skal returnere en tekst som inneholder personens navn og idNr.
        Hvis personen leier en sykkel, skal sykkelens idNr tas med i teksten.
