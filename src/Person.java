@@ -59,25 +59,35 @@ public class Person
    }
 
    public void leverInn() {
-     /*
-     < Metoden skal registrere innleveringstidpunktet (som vil  være det samme
-       som tidspunktet for når denne metoden blir kalt). Videre skal leietiden
-       beregnes. Hvis den lovlige leietiden er overskredet, skal det settes en
-       merknad på personen. Denne skal inneholde innleveringstidspunktet og det
-       antall timer leietiden er overskredet med. Uansett skal det registreres
-       at personen ikke lenger leier sykkelen. >
-      * 
-      */
+	   Date innTid = new Date();
+	   
+	   if(leietid(innTid) > sykkel.getMAXTID()) {
+		   
+		   if(leietid(innTid) - 3 == 1 ) {
+		   setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - sykkel.getMAXTID()) + " time for sent");
+		   }
+		   
+		   else {
+			   setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - sykkel.getMAXTID()) + " timer for sent");
+		   }
+	   }
+	   sykkel = null;
    }
+
+  
 
    public String toString() {
-     /*
-     < Metoden skal returnere en tekst som inneholder personens navn og idNr.
-       Hvis personen leier en sykkel, skal sykkelens idNr tas med i teksten.
-       Hvis personen har en merknad, skal denne også tas med i teksten. >
-      * 
-      */
-     return null;
+	   String utskrift = navn + " ID nummer: " + id + "\n";
+	   
+	   if(sykkel != null) {
+		   utskrift += "Sykkel id: " + sykkel.getId() + "\n";
+	   }
+	   
+	   if(merknad != null) {
+		   utskrift += merknad;
+	   }
+	   
+	   return utskrift;
    }
 
-} // end of class Person
+} 
