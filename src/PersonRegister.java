@@ -9,7 +9,7 @@ public class PersonRegister
      opprettPersonregister();
    }
 
-   public void opprettPersonregister()
+   public final void opprettPersonregister()
    {
      /*
      < Her skal du opprette konkrete Person-objekter og sette dem inn
@@ -17,9 +17,21 @@ public class PersonRegister
        ut programmet. >
       * 
       */
+     personer[0] = new Person("Tommy");
+     personer[1] = new Person("Kristoffer");
+     personer[2] = new Person("Jan");
+     personer[3] = new Person("Skrue McDuck");
+     personer[4] = new Person("Donald Duck");
+     personer[5] = new Person("Albert Einstein");
+     personer[6] = new Person("Petter Smart");
+     personer[7] = new Person("Dennis Ritchie");
+     personer[8] = new Person("C'thulu");
+     personer[9] = new Person("Hufsa");
+     
+     // 10 personer. GOTO START
    }
 
-   public Person finnPerson(int personId)
+   public Person finnPerson(int personID)
    {
      /*
      < Metoden skal lete etter en person (et person-objekt) med idNr lik
@@ -28,10 +40,16 @@ public class PersonRegister
        null. NB! Vi kjenner ikke til antall person-objekter i arrayen og vet
        heller ikke om disse ligger etter hverandre. >
       */
+     for (int i = 0; i < personer.length; i++) {
+       Person person = personer[i];
+       if (person != null && person.getID() == personID) {
+         return person;
+       }
+     }
      return null;
    }
 
-   public Person finnSykkelBruker(int sykkelId)
+   public Person finnSykkelBruker(int sykkelID)
    {
      /*
      < Metoden skal lete etter en person (et person-objekt) som leier en sykkel
@@ -41,6 +59,12 @@ public class PersonRegister
        og heller ikke om disse ligger etter hverandre. >
       * 
       */
+     for (int i = 0; i < personer.length; i++) {
+       Person person = personer[i];
+       if (person != null && person.getSykkel().getID() == sykkelID) {
+         return person;
+       }
+     }
      return null;
    }
 
