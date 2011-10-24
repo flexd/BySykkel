@@ -9,7 +9,7 @@ public class Person
 	Sykkel sykkel;
 	String merknad;
 	Date startTid;
-	int nesteNr = 0;
+	static int nesteNr = 0;
 	
 	public Person(String navn) {
 		this.navn = navn;
