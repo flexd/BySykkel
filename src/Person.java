@@ -1,5 +1,6 @@
 import java.util.Date;
 import java.text.DateFormat;
+import javax.swing.JOptionPane;
 
 public class Person
 {
@@ -7,7 +8,7 @@ public class Person
 	int id;
 	Sykkel sykkel;
 	String merknad;
-	int StartTid;
+	Date startTid;
 	int nesteNr;
 	
 	public Person(String navn) {
@@ -26,38 +27,35 @@ public class Person
    public boolean godkjent()
    {
 	   if (sykkel == null && merknad == null) {
+		   JOptionPane.showMessageDialog(null, "godkjent() ble true");
 		   return true;
 	   }
-
+	   JOptionPane.showMessageDialog(null, "godkjent() ble false");
 	   return false;
    }
 
    public void setMerknad(Date t, String m) {
 	   DateFormat df = DateFormat.getInstance();
-	   
-	   merknad+= df.format(t) + " " + m + "\n";
+	   merknad+= df.format(t) + " : " + m + "\n";
+	   JOptionPane.showMessageDialog(null, "merknad registert");
    }
 
    public boolean leiSykkel(Sykkel s) {
-     /*
-     < Hvis personen er godkjent, jfr. metoden godkjent(), skal metoden
-       registrere at personen leier sykkelen s. Starttidspunktet for leietiden
-       skal også registreres og skal være det samme som tidspunktet for når
-       denne metoden blir kalt. Metoden skal så returnere true.
-       Hvis personen ikke er godkjent, får vedkommende ikke leie sykkelen s
-       og metoden skal returnere false. >
-      * 
-      */
-     return false;
+	   if(godkjent() == true) {
+		   sykkel = s;
+		   startTid = new Date();
+		   JOptionPane.showMessageDialog(null, "leiSykkel() ble true");
+		   return true;
+	   }
+	   JOptionPane.showMessageDialog(null, "leiSykkel() ble false");  
+	   return false;
    }
 
    public int leietid(Date sluttTid) {
-     /*
-     < Metoden skal returnere antall påbegynte timer fra starttidspunktet for
-       leien til sluttidspunktet angitt av parameteren sluttTid. >
-      * 
-      */
-     return 0;
+	   long varighet = (sluttTid.getTime() - startTid.getTime()); 
+	   int varighetTimer = (int) Math.ceil(varighet / 3600000);
+	   
+	   return varighetTimer;
    }
 
    public void leverInn() {
