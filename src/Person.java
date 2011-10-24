@@ -9,7 +9,7 @@ public class Person
 	Sykkel sykkel;
 	String merknad;
 	Date startTid;
-	int nesteNr;
+	int nesteNr = 0;
 	
 	public Person(String navn) {
 		this.navn = navn;
@@ -61,14 +61,14 @@ public class Person
    public void leverInn() {
 	   Date innTid = new Date();
 	   
-	   if(leietid(innTid) > sykkel.getMAXTID()) {
+	   if(leietid(innTid) > Sykkel.getMAXTID()) {
 		   
 		   if(leietid(innTid) - 3 == 1 ) {
-		   setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - sykkel.getMAXTID()) + " time for sent");
+		   setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - Sykkel.getMAXTID()) + " time for sent");
 		   }
 		   
 		   else {
-			   setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - sykkel.getMAXTID()) + " timer for sent");
+			   setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - Sykkel.getMAXTID()) + " timer for sent");
 		   }
 	   }
 	   sykkel = null;
@@ -80,7 +80,7 @@ public class Person
 	   String utskrift = navn + " ID nummer: " + id + "\n";
 	   
 	   if(sykkel != null) {
-		   utskrift += "Sykkel id: " + sykkel.getId() + "\n";
+		   utskrift += "Sykkel id: " + sykkel.getID() + "\n";
 	   }
 	   
 	   if(merknad != null) {
