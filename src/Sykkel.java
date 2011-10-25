@@ -3,6 +3,7 @@ public class Sykkel {
   private static int nextID = 0;
   private int stativID = -1;
   private int id;
+  private int leidAvID = -1;
    
   public Sykkel(int sID) {
     id = nextID++;
@@ -13,6 +14,14 @@ public class Sykkel {
     return MAXTID;
   }
 
+  public int getLeidAvID() {
+    return leidAvID;
+  }
+
+  public void setLeidAvID(int leidAvID) {
+    this.leidAvID = leidAvID;
+  }
+  
   public int getStativID() {
     return stativID;
   }

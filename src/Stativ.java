@@ -17,7 +17,8 @@ public class Stativ
        i arrayen. Et passende antall vil være halvparten av hva det er plass til. >
       */
      for (int i = 0; i < (maxAntall/2); i++) {
-       stativ[nextStativID] = new Sykkel(nextStativID++); // lager ny sykkel m/stativID for dette stativet.
+       Sykkel s = new Sykkel(nextStativID);
+       stativ[nextStativID++] = s; // lager ny sykkel m/stativID for dette stativet.
      }
    }
 
@@ -28,6 +29,15 @@ public class Stativ
      for (int i = 0; i < stativ.length; i++) {
        Sykkel sykkel = stativ[i];
        if (sykkel != null) {
+         return sykkel;
+       }
+     }
+     return null;
+   }
+   public Sykkel finnSykkel(int sykkelID) {
+     for (int i = 0; i < stativ.length; i++) {
+       Sykkel sykkel = stativ[i];
+       if (sykkel != null && sykkel.getID() == sykkelID) {
          return sykkel;
        }
      }
@@ -60,7 +70,7 @@ public class Stativ
        Sykkel sykkel = finnLedigSykkel();
        if (s.leiSykkel(sykkel)) {
          stativ[sykkel.getStativID()] = null; // Fjerne sykkelen fra stativet.
-         return "Ta sykkel fra plass " + (1+sykkel.getStativID()) + "\n";
+         return "Ta sykkel med ID: " + (1+sykkel.getID()) + " fra plass " + (1+sykkel.getStativID()) + ".\n Dette ID-nummeret må du oppgi når du skal levere sykkelen\n";
        }
        else { 
          // NO SOUP FOR YOU!
@@ -87,10 +97,10 @@ public class Stativ
       if (ledigPlass != -1) {
         stativ[ledigPlass] = s.getSykkel();
         s.leverInn();
-        return "Sett sykkelen på plass " + (1+ledigPlass);
+        return "Sett sykkelen på plass " + (1+ledigPlass) + "\n";
       }
       else {
-        return "Stativet er fullt som du sikkert ser, returner sykkelen et annet sted";
+        return "Stativet er fullt som du sikkert ser, returner sykkelen et annet sted\n";
       } 
    }
 

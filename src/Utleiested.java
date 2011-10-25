@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 public class Utleiested extends JFrame implements ActionListener
 {
    private Stativ stativet;
@@ -32,7 +33,7 @@ public class Utleiested extends JFrame implements ActionListener
      personIDlabel = new JLabel("Person ID");
      personIDFelt = new JTextField(2);
      ut = new JButton("Leie");
-     sykkelIDlabel = new JLabel(" Sykkel ID");
+     sykkelIDlabel = new JLabel("Sykkel ID");
      sykkelIDFelt = new JTextField(2);
      inn = new JButton("Levere");
      
@@ -40,8 +41,12 @@ public class Utleiested extends JFrame implements ActionListener
      
      ut.addActionListener(this);
      inn.addActionListener(this);
-     display = new JTextArea(200, 200);
+     display = new JTextArea(6,15);
+     display.setEditable(false);
+     display.setLineWrap(true);
      
+     JScrollPane content = new JScrollPane(display);
+     content.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
      Container c = getContentPane();
     
      setLayout(new FlowLayout());
@@ -52,10 +57,11 @@ public class Utleiested extends JFrame implements ActionListener
      c.add(sykkelIDlabel);
      c.add(sykkelIDFelt);
      c.add(inn);
-     c.add(display);
-
+     c.add(content);
+     
      setSize(200, 200);
      setVisible(true);
+     setResizable(false);
      setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
    }
 
@@ -70,8 +76,8 @@ public class Utleiested extends JFrame implements ActionListener
        sykkelen. >
       */
      
-     if (personIDFelt.getText() != "" && sykkelIDFelt.getText() != "") {
-       Person person = personer.finnPerson(Integer.parseInt(personIDFelt.getText()));
+     if (personIDFelt.getText() != null) {
+       Person person = personer.finnPerson((Integer.parseInt(personIDFelt.getText())-1));
        if (person != null) {
          // Success, vi har en person.
          String resultat = stativet.leiUt(person);
@@ -95,6 +101,23 @@ public class Utleiested extends JFrame implements ActionListener
        sykkelens id-nummer er ukjent, skal det gis beskjed om det. >
       * 
       */
+     if (sykkelIDFelt.getText() != null) {
+       Person person = personer.finnSykkelBruker((Integer.parseInt(sykkelIDFelt.getText())-1));
+       String resultat = "";
+
+       if (person != null) {
+         // Success, vi har en person.
+         resultat = stativet.leverInn(person);
+       }
+       else {
+        resultat = "Det finnes ingen person med dette ID eller så har ingen leid denne sykkelen.\n";
+       }
+         display.append(resultat);
+     }
+     else {
+      // Sorry personen finnes ikke i registeret.
+      display.append("Du må faktisk skrive inn et id\n");
+     }
    }
 
   @Override
@@ -105,7 +128,7 @@ public class Utleiested extends JFrame implements ActionListener
        "Leie", og at leverInn() kalles når det klikkes på  knappen "Levere" >
       * 
       */
-     if (e.getSource() == ut ) {
+     if (e.getSource() == ut) {
        leiUt();
      }
      else if (e.getSource() == inn) {
