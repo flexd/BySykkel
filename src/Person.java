@@ -27,7 +27,7 @@ public class Person
    public boolean godkjent()
    {
 	   if (sykkel == null && merknad == null) {
-		   JOptionPane.showMessageDialog(null, "godkjent() ble true");
+		   
 		   return true;
 	   }
 	   JOptionPane.showMessageDialog(null, "godkjent() ble false");

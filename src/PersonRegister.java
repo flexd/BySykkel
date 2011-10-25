@@ -17,7 +17,7 @@ public class PersonRegister
        ut programmet. >
       * 
       */
-     personer[0] = new Person("Tommy");
+     personer[0] = new Person("Mester Tommy");
      personer[1] = new Person("Kristoffer");
      personer[2] = new Person("Jan");
      personer[3] = new Person("Skrue McDuck");
@@ -25,10 +25,10 @@ public class PersonRegister
      personer[5] = new Person("Albert Einstein");
      personer[6] = new Person("Petter Smart");
      personer[7] = new Person("Dennis Ritchie");
-     personer[8] = new Person("C'thulu");
+     personer[8] = new Person("C'thululu");
      personer[9] = new Person("Hufsa");
      
-     // 10 personer. GOTO START
+     // 10 personer. Go to start and collect 200$
    }
 
    public Person finnPerson(int personID)
@@ -47,7 +47,7 @@ public class PersonRegister
        }
      }
      return null;
-   }
+     }
 
    public Person finnSykkelBruker(int sykkelID)
    {
