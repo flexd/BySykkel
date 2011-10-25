@@ -4,72 +4,70 @@ import javax.swing.JOptionPane;
 
 public class Person
 {
-	String navn;
-	int id;
-	Sykkel sykkel;
-	String merknad;
-	Date startTid;
-	static int nesteNr = 0;
+   String navn;
+   int id;
+   Sykkel sykkel;
+   String merknad;
+   Date startTid;
+   static int nesteNr = 0;
 	
-	public Person(String navn) {
-		this.navn = navn;
-		id = nesteNr++;	
-	}
-
-   public int getID() {
-	   return id;
+   public Person(String navn) {
+    this.navn = navn;
+    id = nesteNr++;	
    }
 
-   public Sykkel getSykkel() {
-	   return sykkel;
+   public int getID() {
+     return id;
+   }
+
+   public Sykkel getSykkel() { 
+     return sykkel;
    }
 
    public boolean godkjent()
    {
-	   if (sykkel == null && merknad == null) {
-		   return true;
-	   }
-	   return false;
+    if (sykkel == null && merknad == null) {
+      return true;
+    }
+    return false;
    }
 
    public void setMerknad(Date t, String m) {
-	   DateFormat df = DateFormat.getInstance();
-	   merknad+= df.format(t) + " : " + m + "\n";
-	   JOptionPane.showMessageDialog(null, "merknad registert");
+     DateFormat df = DateFormat.getInstance(); 
+     merknad+= df.format(t) + " : " + m + "\n";
+     JOptionPane.showMessageDialog(null, "merknad registert");
    }
 
    public boolean leiSykkel(Sykkel s) {
-	   if(godkjent() == true) {
-		   sykkel = s;
-		   startTid = new Date();
-                   s.setLeidAvID(id);
-		   return true;
-	   }
-	   return false;
+     if(godkjent()) {
+      sykkel = s;
+      startTid = new Date();
+      return true;
+     }
+     return false;
    }
 
    public int leietid(Date sluttTid) {
-	   long varighet = (sluttTid.getTime() - startTid.getTime()); 
-	   int varighetTimer = (int) Math.ceil(varighet / 3600000);
+    long varighet = (sluttTid.getTime() - startTid.getTime()); 
+    int varighetTimer = (int) Math.ceil(varighet / 3600000);
 	   
-	   return varighetTimer;
+    return varighetTimer;
    }
 
    public void leverInn() {
-	   Date innTid = new Date();
+     Date innTid = new Date();
 	   
-	   if(leietid(innTid) > Sykkel.getMAXTID()) {
+     if(leietid(innTid) > Sykkel.getMAXTID()) {
 		   
-		   if(leietid(innTid) - 3 == 1 ) {
-		   setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - Sykkel.getMAXTID()) + " time for sent");
-		   }
+      if(leietid(innTid) - 3 == 1 ) {
+        setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - Sykkel.getMAXTID()) + " time for sent");
+      }
 		   
-		   else {
-			   setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - Sykkel.getMAXTID()) + " timer for sent");
-		   }
-	   }
-           sykkel.setLeidAvID(-1);
-	   sykkel = null;
+      else {
+        setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - Sykkel.getMAXTID()) + " timer for sent");
+      }
+      sykkel = null;
+     }
    }
 
   

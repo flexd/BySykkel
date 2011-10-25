@@ -17,6 +17,7 @@ public final class SykkelByen
      steder[1] = new Utleiested("Majorstua", 20, register);
      steder[2] = new Utleiested("Nasjonalteateret", 20, register);
      steder[3] = new Utleiested("Egertorvet", 20, register);
+     steder[4] = new Utleiested("Tinghuset", 20, register);
    }
 
    public static void main(String[] args)

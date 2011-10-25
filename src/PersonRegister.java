@@ -61,7 +61,7 @@ public class PersonRegister
       */
      for (int i = 0; i < personer.length; i++) {
        Person person = personer[i];
-       if (person != null && person.getSykkel().getID() == sykkelID) {
+       if (person != null && person.getSykkel() != null && person.getSykkel().getID() == sykkelID) {
          return person;
        }
      }
