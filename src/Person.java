@@ -35,7 +35,7 @@ public class Person
    public void setMerknad(Date t, String m) {
      DateFormat df = DateFormat.getInstance(); 
      merknad+= df.format(t) + " : " + m + "\n";
-     JOptionPane.showMessageDialog(null, "Følgende merknad er registert - " + merknad);
+     JOptionPane.showMessageDialog(null, "Fï¿½lgende merknad er registert - " + merknad);
    }
 
    public boolean leiSykkel(Sykkel s) {
@@ -80,7 +80,7 @@ public class Person
 		   utskrift += "Sykkel id: " + sykkel.getID() + "\n";
 	   }
 	   
-	   if(merknad != null) {
+	   if(merknad != "") {
 		   utskrift += merknad;
 	   }
 	   
