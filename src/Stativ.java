@@ -17,7 +17,8 @@ public class Stativ
        i arrayen. Et passende antall vil være halvparten av hva det er plass til. >
       */
      for (int i = 0; i < (maxAntall/2); i++) {
-       stativ[nextStativID] = new Sykkel(nextStativID++); // lager ny sykkel m/stativID for dette stativet.
+       Sykkel s = new Sykkel(nextStativID);
+       stativ[nextStativID++] = s; // lager ny sykkel m/stativID for dette stativet.
      }
    }
 
@@ -96,10 +97,10 @@ public class Stativ
       if (ledigPlass != -1) {
         stativ[ledigPlass] = s.getSykkel();
         s.leverInn();
-        return "Sett sykkelen på plass " + (1+ledigPlass);
+        return "Sett sykkelen på plass " + (1+ledigPlass) + "\n";
       }
       else {
-        return "Stativet er fullt som du sikkert ser, returner sykkelen et annet sted";
+        return "Stativet er fullt som du sikkert ser, returner sykkelen et annet sted\n";
       } 
    }
 

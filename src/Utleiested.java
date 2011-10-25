@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+
 public class Utleiested extends JFrame implements ActionListener
 {
    private Stativ stativet;
@@ -32,7 +33,7 @@ public class Utleiested extends JFrame implements ActionListener
      personIDlabel = new JLabel("Person ID");
      personIDFelt = new JTextField(2);
      ut = new JButton("Leie");
-     sykkelIDlabel = new JLabel(" Sykkel ID");
+     sykkelIDlabel = new JLabel("Sykkel ID");
      sykkelIDFelt = new JTextField(2);
      inn = new JButton("Levere");
      
@@ -40,8 +41,12 @@ public class Utleiested extends JFrame implements ActionListener
      
      ut.addActionListener(this);
      inn.addActionListener(this);
-     display = new JTextArea(15, 10);
+     display = new JTextArea(6,15);
+     display.setEditable(false);
+     display.setLineWrap(true);
      
+     JScrollPane content = new JScrollPane(display);
+     content.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
      Container c = getContentPane();
     
      setLayout(new FlowLayout());
@@ -52,10 +57,11 @@ public class Utleiested extends JFrame implements ActionListener
      c.add(sykkelIDlabel);
      c.add(sykkelIDFelt);
      c.add(inn);
-     c.add(display);
-
-     setSize(200, 100);
+     c.add(content);
+     
+     setSize(200, 200);
      setVisible(true);
+     setResizable(false);
      setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
    }
 
@@ -96,23 +102,21 @@ public class Utleiested extends JFrame implements ActionListener
       * 
       */
      if (sykkelIDFelt.getText() != null) {
-       Sykkel sykkel = stativet.finnSykkel((Integer.parseInt(sykkelIDFelt.getText())-1));
-       if (sykkel != null) {
+       Person person = personer.finnSykkelBruker((Integer.parseInt(sykkelIDFelt.getText())-1));
+       String resultat = "";
+
+       if (person != null) {
          // Success, vi har en person.
-         Person person = personer.finnPerson(sykkel.getLeidAvID());
-         String resultat = "";
-         if (person != null) {
-           resultat = stativet.leverInn(person);
-         }
-         else {
-           resultat = "Det finnes ingen person med dette ID eller så har ingen leid denne sykkelen.\n";
-         }
-         display.append(resultat);
+         resultat = stativet.leverInn(person);
        }
        else {
-         // Sorry personen finnes ikke i registeret.
-         display.append("Du må faktisk skrive inn et id din kølle!\n");
+        resultat = "Det finnes ingen person med dette ID eller så har ingen leid denne sykkelen.\n";
        }
+         display.append(resultat);
+     }
+     else {
+      // Sorry personen finnes ikke i registeret.
+      display.append("Du må faktisk skrive inn et id\n");
      }
    }
 
