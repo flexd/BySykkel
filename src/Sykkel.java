@@ -19,7 +19,6 @@ public class Sykkel {
   
   
   public int getID() {
-    System.out.println("Id er : " + id);
     return id;
   }
   

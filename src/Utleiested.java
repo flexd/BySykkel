@@ -31,10 +31,10 @@ public class Utleiested extends JFrame implements ActionListener
       * 
       */
      personIDlabel = new JLabel("Person ID");
-     personIDFelt = new JTextField(2);
+     personIDFelt = new JTextField(4);
      ut = new JButton("Leie");
      sykkelIDlabel = new JLabel("Sykkel ID");
-     sykkelIDFelt = new JTextField(2);
+     sykkelIDFelt = new JTextField(4);
      inn = new JButton("Levere");
      
      // Lytte etter hendelser.
@@ -75,9 +75,18 @@ public class Utleiested extends JFrame implements ActionListener
        feilmelding. Denne skal inneholde årsaken til at personen ikke fikk leie
        sykkelen. >
       */
-     
-     if (personIDFelt.getText() != null) {
-       Person person = personer.finnPerson((Integer.parseInt(personIDFelt.getText())-1));
+	  boolean failed = false;
+	  int personID = -1;
+	  try {
+	   String personIDstring = personIDFelt.getText();
+	   personID = Integer.parseInt(personIDstring)-1;
+	  }
+	  catch (Exception e) {
+	    failed = true;
+	  }
+      
+     if (!failed) {
+       Person person = personer.finnPerson(personID);
        if (person != null) {
          // Success, vi har en person.
          String resultat = stativet.leiUt(person);
@@ -101,8 +110,17 @@ public class Utleiested extends JFrame implements ActionListener
        sykkelens id-nummer er ukjent, skal det gis beskjed om det. >
       * 
       */
-     if (sykkelIDFelt.getText() != null) {
-       Person person = personer.finnSykkelBruker((Integer.parseInt(sykkelIDFelt.getText())-1));
+	   boolean failed = false;
+	   int sykkelID = -1;
+	   try {
+		 String sykkelIDstring = sykkelIDFelt.getText(); 
+	     sykkelID = Integer.parseInt(sykkelIDstring)-1;
+	   }
+		  catch (Exception e) {
+		    failed = true;
+		  }
+     if (!failed) {
+       Person person = personer.finnSykkelBruker(sykkelID);
        String resultat = "";
 
        if (person != null) {

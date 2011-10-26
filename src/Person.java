@@ -7,7 +7,7 @@ public class Person
    String navn;
    int id;
    Sykkel sykkel;
-   String merknad;
+   String merknad = "";
    Date startTid;
    static int nesteNr = 0;
 	
@@ -26,7 +26,7 @@ public class Person
 
    public boolean godkjent()
    {
-    if (sykkel == null && merknad == null) {
+    if (sykkel == null && merknad.equals("")) {
       return true;
     }
     return false;
@@ -35,7 +35,7 @@ public class Person
    public void setMerknad(Date t, String m) {
      DateFormat df = DateFormat.getInstance(); 
      merknad+= df.format(t) + " : " + m + "\n";
-     JOptionPane.showMessageDialog(null, "merknad registert");
+     JOptionPane.showMessageDialog(null, "Følgende merknad er registert - " + merknad);
    }
 
    public boolean leiSykkel(Sykkel s) {
