@@ -1,30 +1,42 @@
+/* 
+ * Innlevering 3 - 30/10-2011
+ * Kristoffer Berdal - s180212
+ * Jan E. Vandevjen - s180494
+ * Tommy Nyrud - s180487
+ * Informasjonsteknologi 1IA og
+ * Dataingeniør 1AA 
+ */
+
+/*Klasse som kontrollerer stativer, den inneholder metoder for å finne ledige plasser, fylle stativet, 
+ * lokalisere sykler osv.   
+ */
 public class Stativ
 {
    private Sykkel[] stativ;
    private int nextStativID = 0;
    private int maxAntall = 0;
+   
    public Stativ(int antallSykler)
    {
      maxAntall = antallSykler;
      stativ = new Sykkel[antallSykler];
      fyllStativet();
    }
-
+   
+   //Metode som fyller en stativ array med sykler.
    public void fyllStativet()
    {
-     /*
-     < Her skal du opprette konkrete Sykkel-objekter og sette dem inn
-       i arrayen. Et passende antall vil vÃ¦re halvparten av hva det er plass til. >
-      */
      for (int i = 0; i < (maxAntall/2); i++) {
        Sykkel s = new Sykkel(nextStativID);
-       stativ[nextStativID++] = s; // lager ny sykkel m/stativID for dette stativet.
+       stativ[nextStativID++] = s; //Lager ny sykkel m/stativID for dette stativet.
      }
    }
-
+   
    public int getNextStativID() {
     return nextStativID;
    }
+   
+   //Metode som leter etter en ledig sykkel i stativet
    public Sykkel finnLedigSykkel() {
      for (int i = 0; i < stativ.length; i++) {
        Sykkel sykkel = stativ[i];
@@ -34,6 +46,8 @@ public class Stativ
      }
      return null;
    }
+   
+   //Finner en sykkel lik sykkelID sendt med som parameter
    public Sykkel finnSykkel(int sykkelID) {
      for (int i = 0; i < stativ.length; i++) {
        Sykkel sykkel = stativ[i];
@@ -43,15 +57,19 @@ public class Stativ
      }
      return null;
    }
-    public int finnLedigPlass() {
-     for (int i = 0; i < stativ.length; i++) {
-       Sykkel sykkel = stativ[i];
-       if (sykkel == null) {
-         return i;
+   
+   //Metoden finner en ledig plass i stativet
+   public int finnLedigPlass() {
+	   for (int i = 0; i < stativ.length; i++) {
+		   Sykkel sykkel = stativ[i];
+		   if (sykkel == null) {
+			   return i;
        }
      }
      return -1;
    }
+   
+   //
    public String leiUt(Person s)
    {
      /*
@@ -74,11 +92,11 @@ public class Stativ
        }
        else { 
          // NO SOUP FOR YOU!
-         return "Du fÃ¥r ikke leie sykkel fordi du enten har leid en sykkel fra fÃ¸r eller har noen negative merknader!\n";
+         return "Du får ikke leie sykkel fordi du enten har leid en sykkel fra før eller har noen negative merknader!\n";
        }
      }
      else {
-      return "Det er desverre ingen ledige sykler pÃ¥ dette stativet, men det ser du vel dummen! :-D\n";
+      return "Det er desverre ingen ledige sykler på dette stativet\n";
      }
    }
 
@@ -100,7 +118,7 @@ public class Stativ
         return "Sett sykkelen pÃ¥ plass " + (1+ledigPlass) + "\n";
       }
       else {
-        return "Stativet er fullt som du sikkert ser, returner sykkelen et annet sted\n";
+        return "Stativet er fullt, returner sykkelen et annet sted\n";
       } 
    }
 
