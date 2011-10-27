@@ -7,6 +7,8 @@
  * Dataingeniør 1AA 
  */
 
+//Klasse for for sørger for å konstruksjon og kontroll av Sykkelobjekter
+
 public class Sykkel {
   private final static int MAXTID = 3;
   private static int nextID = 0;
@@ -15,7 +17,7 @@ public class Sykkel {
    
   public Sykkel(int sID) {
     id = nextID++;
-    stativID = sID; // StativID er ID til sykkelen i stativet den er i akkurat NUH.
+    stativID = sID; // StativID er ID til sykkelen i stativet den er i akkurat nå.
   }
 
   public static int getMAXTID() {
@@ -31,4 +33,4 @@ public class Sykkel {
     return id;
   }
   
-} // End of Sykkel
+}

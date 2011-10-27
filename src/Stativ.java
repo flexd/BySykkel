@@ -4,10 +4,10 @@
  * Jan E. Vandevjen - s180494
  * Tommy Nyrud - s180487
  * Informasjonsteknologi 1IA og
- * Dataingeni�r 1AA 
+ * Dataingeni�r 1AA 
  */
 
-/*Klasse som kontrollerer stativer, den inneholder metoder for � finne ledige plasser, fylle stativet, 
+/*Klasse som kontrollerer stativer, den inneholder metoder for å finne ledige plasser, fylle stativet, 
  * lokalisere sykler osv.   
  */
 public class Stativ
@@ -69,21 +69,9 @@ public class Stativ
      return -1;
    }
    
-   //
+   //Lar en person leie en ledig sykkel fra stativet
    public String leiUt(Person s)
    {
-     /*
-     < Metoden skal registrere at personen representert ved parameteren s
-       leier en sykkel under følgende tre forutsetninger:
-       - Personen har ingen merknader.
-       - Personen leier ingen sykkel fra før.
-       - Det er en ledig sykkel i stativet.
-       Hvis alle betingelsene er oppfylt, skal sykkelen fjernes fra stativet og
-       leie av sykkelen skal registreres på personen. Metoden skal så returnere
-       en tekst med informasjon om hvilken sykkel som skal brukes, for eksempel:
-       "Ta sykkel på plass 1". Husk at plassene går fra 1 og oppover. Hvis leie
-       av sykkel ikke lar seg gjøre skal metoden returnere en tekst med
-       informasjon om hva det skyldes. >*/
      if (stativ.length > 0) {
        Sykkel sykkel = finnLedigSykkel();
        if (s.leiSykkel(sykkel)) {
@@ -91,26 +79,18 @@ public class Stativ
          return "Ta sykkel med ID: " + (1+sykkel.getID()) + " fra plass " + (1+sykkel.getStativID()) + ".\n Dette ID-nummeret må du oppgi når du skal levere sykkelen\n";
        }
        else { 
-         // NO SOUP FOR YOU!
-         return "Du f�r ikke leie sykkel fordi du enten har leid en sykkel fra f�r eller har noen negative merknader!\n";
+         
+         return "Du får ikke leie sykkel fordi du enten har leid en sykkel fra før eller har noen negative merknader!\n";
        }
      }
      else {
-      return "Det er desverre ingen ledige sykler p� dette stativet\n";
+      return "Det er desverre ingen ledige sykler p� dette stativet\n";
      }
    }
-
+   
+   //Metode for å levere inn en sykkel
    public String leverInn(Person s )
    {
-     /*
-     < Metoden skal sørge for at sykkelen som personen, representert ved
-       parameteren s,leier blir "satt tilbake i stativet", under forutsetning
-       av at det er plass i stativet. Videre må det registreres at personen nå
-       ikke lenger leier sykkelen. Hvis det er plass skal metoden returnere en
-       tekst som angir hvor sykkelen skal plasseres, for eksempel:
-       "Sett sykkelen på plass 12".I motsatt fall skal det returneres en tekst
-       som ber syklisten levere sykkelen et annet sted. >
-      */
       int ledigPlass = finnLedigPlass();
       if (ledigPlass != -1) {
         stativ[ledigPlass] = s.getSykkel();
@@ -122,4 +102,4 @@ public class Stativ
       } 
    }
 
-}// end of class Sykkel
+}
