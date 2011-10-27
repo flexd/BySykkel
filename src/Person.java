@@ -66,8 +66,8 @@ public class Person
       else {
         setMerknad(innTid, "Sykkel ble levert " + (leietid(innTid) - Sykkel.getMAXTID()) + " timer for sent");
       }
-      sykkel = null;
      }
+     sykkel = null;
    }
 
   
