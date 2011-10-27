@@ -4,10 +4,10 @@
  * Jan E. Vandevjen - s180494
  * Tommy Nyrud - s180487
  * Informasjonsteknologi 1IA og
- * Dataingeni�r 1AA
+ * Dataingeniør 1AA
  */
 
-//Denne klassen s�rger for konstruksjon og kontroll av Person objekter
+//Denne klassen sørger for konstruksjon og kontroll av Person objekter
 import java.util.Date;
 import java.text.DateFormat;
 import javax.swing.JOptionPane;
@@ -21,7 +21,7 @@ public class Person {
   private Date startTid;
   private static int nesteNr = 0; //Global tellevariabel for alle person objektene
 
-  //Konstrukt�r som ogs� gir Person objektet en ny id
+  //Konstruktør som også gir Person objektet en ny id
   public Person(String navn) {
     this.navn = navn;
     id = nesteNr++;
@@ -43,7 +43,7 @@ public class Person {
     return false;
   }
 
-  //Oppretter, og legger til merknader p� brukeren
+  //Oppretter, og legger til merknader på brukeren
   public void setMerknad(Date t, String m) {
     DateFormat df = DateFormat.getInstance();
     merknad += df.format(t) + " : " + m + "\n";
@@ -60,7 +60,7 @@ public class Person {
     return false;
   }
 
-  //Regner ut leietid, rundet opp til n�rmeste hele time
+  //Regner ut leietid, rundet opp til nærmeste hele time
   public int leietid(Date sluttTid) {
     long varighet = (sluttTid.getTime() - startTid.getTime());
     int varighetTimer = (int) Math.ceil(varighet / 3600000);
@@ -92,7 +92,7 @@ public class Person {
       utskrift += "Sykkel id: " + sykkel.getID() + "\n";
     }
 
-    if (merknad != "") {
+    if (!merknad.equals("")) {
       utskrift += merknad;
     }
 

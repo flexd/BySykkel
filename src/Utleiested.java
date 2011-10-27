@@ -4,7 +4,7 @@
  * Jan E. Vandevjen - s180494
  * Tommy Nyrud - s180487
  * Informasjonsteknologi 1IA og
- * Dataingeni�r 1AA 
+ * Dataingeniør 1AA 
  */
 
 // Klasse som håndterer Utleiestedene, Vindusklassen og events.
