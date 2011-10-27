@@ -1,3 +1,14 @@
+/* 
+ * Innlevering 3 - 30/10-2011
+ * Kristoffer Berdal - s180212
+ * Jan E. Vandevjen - s180494
+ * Tommy Nyrud - s180487
+ * Informasjonsteknologi 1IA og
+ * Dataingeniør 1AA 
+ */
+
+//Klasse som oppretter og leter igjennom Person objekter
+
 public class PersonRegister
 {
    private Person[] personer;
@@ -8,15 +19,10 @@ public class PersonRegister
      personer = new Person[antall];
      opprettPersonregister();
    }
-
+   
+   //Metoden oppretter 10 brukere i har valgt å navngi. 
    public final void opprettPersonregister()
    {
-     /*
-     < Her skal du opprette konkrete Person-objekter og sette dem inn
-       i arrayen, f.eks 10 stykker. Du vil trenge dem for Ã¥ kunne teste
-       ut programmet. >
-      * 
-      */
      personer[0] = new Person("Mester Tommy");
      personer[1] = new Person("Kristoffer");
      personer[2] = new Person("Jan");
@@ -26,20 +32,12 @@ public class PersonRegister
      personer[6] = new Person("Petter Smart");
      personer[7] = new Person("Dennis Ritchie");
      personer[8] = new Person("C'thululu");
-     personer[9] = new Person("Hufsa");
-     
-     // 10 personer. Go to start and collect 200$
+     personer[9] = new Person("Marie Hufsa");
    }
-
+   
+   //Metode som leter etter et person objekt med personID lik parameteret som blir sendt med
    public Person finnPerson(int personID)
    {
-     /*
-     < Metoden skal lete etter en person (et person-objekt) med idNr lik
-       parameteren personId. Hvis personen finnes i registeret, skal person-
-       objektet returneres fra metoden. I motsatt fall skal metoden returnere
-       null. NB! Vi kjenner ikke til antall person-objekter i arrayen og vet
-       heller ikke om disse ligger etter hverandre. >
-      */
      for (int i = 0; i < personer.length; i++) {
        Person person = personer[i];
        if (person != null && person.getID() == personID) {
@@ -48,17 +46,10 @@ public class PersonRegister
      }
      return null;
      }
-
+   
+   //Metode som finner hvilket Person objekt som eier Sykkel med sykkelID gitt som parameter
    public Person finnSykkelBruker(int sykkelID)
    {
-     /*
-     < Metoden skal lete etter en person (et person-objekt) som leier en sykkel
-       med idNr lik parameteren sykkelId. Hvis en slik person finnes i registeret,
-       skal person-objektet returneres fra metoden. I motsatt fall skal metoden
-       returnere null. NB! Vi kjenner ikke til antall person-objekter i arrayen
-       og heller ikke om disse ligger etter hverandre. >
-      * 
-      */
      for (int i = 0; i < personer.length; i++) {
        Person person = personer[i];
        if (person != null && person.getSykkel() != null && person.getSykkel().getID() == sykkelID) {
@@ -68,4 +59,4 @@ public class PersonRegister
      return null;
    }
 
-} // end of class PersonRegister
+} 
